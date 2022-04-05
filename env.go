@@ -1,10 +1,11 @@
 package env
 
 import (
-	`os`
+	"os"
+	"runtime"
 
-	`github.com/google/uuid`
-	`github.com/rs/xid`
+	"github.com/google/uuid"
+	"github.com/rs/xid"
 )
 
 var _ = Get
@@ -14,6 +15,8 @@ func Get(key string) (env string) {
 	switch key {
 	case envHostname:
 		env = hostname()
+	case envOsType:
+		env = runtime.GOOS
 	case envUuid:
 		env = uuid.NewString()
 	case envXid:
